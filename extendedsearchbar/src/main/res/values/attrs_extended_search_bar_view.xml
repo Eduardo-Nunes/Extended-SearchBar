@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="ExtendedSearchBarView">
+        <attr name="searchHint" format="string" />
+        <attr name="searchMaxLength" format="integer" />
+        <attr name="searchDebounceTime" format="integer" />
+        <attr name="searchTextPadding" format="dimension" />
+        <attr name="searchTextSize" format="dimension"/>
+        <attr name="searchIconSize" format="dimension"/>
+     </declare-styleable>
+</resources>
