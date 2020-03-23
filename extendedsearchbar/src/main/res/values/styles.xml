@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
+    </style>
+
+    <style name="autoCompleteCustomCursor" parent="Theme.AppCompat">
+        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
+    </style>
+</resources>

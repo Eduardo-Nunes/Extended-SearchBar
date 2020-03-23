@@ -6,5 +6,6 @@
         <attr name="searchTextPadding" format="dimension" />
         <attr name="searchTextSize" format="dimension"/>
         <attr name="searchIconSize" format="dimension"/>
+        <attr name="searchBarHeight" format="dimension"/>
      </declare-styleable>
 </resources>
