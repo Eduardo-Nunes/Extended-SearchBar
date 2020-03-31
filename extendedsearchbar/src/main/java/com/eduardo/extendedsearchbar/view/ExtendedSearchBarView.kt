@@ -12,7 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import com.eduardo.extendedsearchbar.R
 import com.eduardo.extendedsearchbar.extensions.*
-import org.jetbrains.anko.custom.style
 import org.jetbrains.anko.leftPadding
 import org.jetbrains.anko.rightPadding
 
@@ -26,6 +25,7 @@ private const val DEFAULT_SEARCH_MAX_LENGTH = 100
 /**
  * TODO: document your custom view class.
  */
+
 class ExtendedSearchBarView : FrameLayout {
 
     private var _textSize: Float = DEFAULT_TEXT_SIZE
@@ -58,11 +58,14 @@ class ExtendedSearchBarView : FrameLayout {
         _searchView.setHintTextColor(hintColor)
     }
 
+    fun changeSearchColor(@ColorRes hintColor: Int) {
+        _searchView.setSearchTextColor(hintColor)
+    }
+
     fun setupInputCallback(
-        onFuzzyCallback: (String) -> Unit,
-        onSearchCallback: ((String) -> Unit)?
+        onFuzzyCallback: FuzzySearchCallback
     ) {
-        _searchView.onQueryTextObserver(_debounceTime, onFuzzyCallback, onSearchCallback)
+        _searchView.onQueryTextObserver(_debounceTime, onFuzzyCallback)
     }
 
     constructor(context: Context) : super(context) {
@@ -146,7 +149,7 @@ class ExtendedSearchBarView : FrameLayout {
         }
 
         fun SearchView.setupSearchText(): SearchView {
-            setHintTextColor(R.color.grey_super_light)
+            setHintTextColor(R.color.grey_light)
             setSearchTextColor(android.R.color.white)
             getSearchText()?.also {
                 it.textSize = _textSize

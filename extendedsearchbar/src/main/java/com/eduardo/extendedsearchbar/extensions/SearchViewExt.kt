@@ -51,18 +51,17 @@ fun SearchView.getCloseIcon(): AppCompatImageView? {
     return findViewById(androidx.appcompat.R.id.search_close_btn)
 }
 
+typealias FuzzySearchCallback = (query: String, isTyping: Boolean) -> Unit
+
 fun SearchView.onQueryTextObserver(
-    debounceTime: Long = 0L,
-    onFuzzyCallback: (String) -> Unit,
-    onSearchCallback: ((String) -> Unit)?
+    debounceTime: Long,
+    onFuzzySearchCallback: FuzzySearchCallback
 ) {
     setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         var job: Job? = null
         override fun onQueryTextSubmit(query: String?): Boolean {
             cancelJob()
-            onSearchCallback?.run {
-                invoke(query.toString().normalize())
-            } ?: onFuzzyCallback(query.toString().normalize())
+            onFuzzySearchCallback.invoke(query.toString().normalize(), false)
             return false
         }
 
@@ -70,7 +69,7 @@ fun SearchView.onQueryTextObserver(
             cancelJob()
             job = CoroutineScope(Dispatchers.Default).launch {
                 delay(debounceTime)
-                onFuzzyCallback(newText.toString().normalize())
+                onFuzzySearchCallback.invoke(newText.toString().normalize(), true)
             }
             return false
         }

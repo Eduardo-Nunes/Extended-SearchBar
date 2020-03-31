@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparency_white_16">#29FFFFFF</color>
-    <color name="grey_super_light">#C7C7C7</color>
+    <color name="white_16">#29FFFFFF</color>
+    <color name="grey_light">#C7C7C7</color>
 </resources>
